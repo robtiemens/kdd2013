@@ -60,11 +60,12 @@ Note that matrix $M$ is symmetric and very sparse. We used this to our advantage
 
 In the previous subsection we created matrix $M$. Each row is a separate vector $v$ containing information form which terms co-occurs with a another term. Each vector $v$ is then clustered into one of the $c$ clusters with k-means. In our case, we choose  $c = 20$. The number 20 is a wild guess. In the original paper \cite{steyvers2004probabilistic}, the authors use 300 clusters, but our computers were not able to process that number of clusters. Each cluster now contains terms that co-occur a lot. We call a cluster a topic, just as the original paper. As a distance measure we choose \emph{cosine similarity}. Cosine similarity measures the distance between two vectors. The cosine similarity has a big advantage over the Euclidean distance \cite{chowdhury2010introduction}.  
 
-Not that the authors use EM to cluster matrix $M$. This gives the authors a probability of each term for each cluster. because we used k-means we do not have that information anymore. We only which term is in a certain cluster. In our case, each term can only be in a single cluster.
+Note that the authors use a Markov chain to train their model. This gives the authors a probability of each term for each topic. Because we used clustering we do not have that information anymore. We only which term is in a certain topic. In our case, each term can only be in a single topic.
 
-\subsubsection*{Scoring}
 
-At this point we have 20 clusters. Each cluster $c$ contains several terms that that form a single topic. We then score each paper-author combination against the topics. For each  paper-author combination we created sentence $s$ just as in section \ref{sec:imp-text}. For each term in sentence $s$ we counted the number of occurrences in a topic. This is then used as latent variable for classifying paper-
+\subsubsection{Scoring}
+
+At this point we have 20 clusters. Each cluster $c$ contains several terms that that form a single topic. We then score each paper-author combination against the topics. For each  paper-author combination we created sentence $s$ just as in section \ref{sec:text-implementation}. For each term in sentence $s$ we counted the number of occurrences in a topic. This is then used as latent variable for classifying paper-
 author couples.
 
 \begin{multicols}{2}
@@ -73,7 +74,7 @@ author couples.
 \[ score_c = \sum_{t \in s} \delta_c(t) \]
 \end{multicols}
 
-\subsubsection*{Optimizing with Tf-Idf}
+\subsubsection{Optimizing with Tf-Idf}
 
 Thus far, scoring has hinged on how much a term occurs. Common words have a higher score and contribute more towards the final classification. But common words do not say a lot about each sentence\cite{chowdhury2010introduction}. To compensate the higher score for common terms we use a information retreival technique called TF-IDF. Instead of just counting the number of occurrences of a term in a cluster, we assign a TF-IDF for each term and add those together. We simplified TF-IDF for our own use. because a term can only be present once each sentence, we only use IDF. The score for each cluster is now computed as:
 
@@ -84,3 +85,9 @@ Thus far, scoring has hinged on how much a term occurs. Common words have a high
 
 \[ score_c = \sum_{t \in s} \gamma_c(t) \]
 \end{multicols}
+
+\subsubsection{Score usage}
+
+To use these scores the median score for each author was determined. The distance between this median and the score of a given paper-author combination is now an indicator of how likely this author is to have written this article. The cosine similarity is again chosen as a distance and the median is used because of the presence of noise in the data. This distance was calculated for each paper-author combination.
+
+
