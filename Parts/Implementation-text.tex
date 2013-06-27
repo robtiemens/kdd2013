@@ -1,4 +1,4 @@
-\subsection*{Text analyses \label{sec:imp-text}}
+%\subsection*{Text analyses \label{sec:imp-text}}
 
 In section \ref{sec:text-background} we introduced a model to create topics from a large collection of text. We adjusted that approach to the problem we needed to solve. We did not have a lot of text from each of the papers. From each paper we only know the title and keyterms. We did not choose to use the keyterms. The keyterms contained a lot of bias and parsing the keyterms in a usable format proved to be difficult. We instead used the titles of the journal or conference the paper was published in. This method has two advantages:
 
@@ -52,16 +52,23 @@ Not that the authors use EM to cluster matrix $M$. This gives the authors a prob
 
 \subsubsection*{Scoring}
 
-At this point we have 20 clusters. Each cluster $c$ contains several terms that that form a single topic. We then score each paper-author combination against the topics. For each  paper-author combination we created sentence $s$ just as in section \ref{sec:imp-text}. For each term in sentence $s$ we counted the number of occurrences in a topic. This is then used as latent variable for classifying paper-author couples.
+At this point we have 20 clusters. Each cluster $c$ contains several terms that that form a single topic. We then score each paper-author combination against the topics. For each  paper-author combination we created sentence $s$ just as in section \ref{sec:imp-text}. For each term in sentence $s$ we counted the number of occurrences in a topic. This is then used as latent variable for classifying paper-
+author couples.
+
+\begin{multicols}{2}
 \[ \delta_c(t) =\left\{ \begin{matrix} 1 & \mbox{if t is present in c} \\ 0 & \mbox{otherwise} \end{matrix} \right.\]
 
 \[ score_c = \sum_{t \in s} \delta_c(t) \]
+\end{multicols}
 
 \subsubsection*{Optimizing with Tf-Idf}
 
 Thus far, scoring has hinged on how much a term occurs. Common words have a higher score and contribute more towards the final classification. But common words do not say a lot about each sentence\cite{chowdhury2010introduction}. To compensate the higher score for common terms we use a information retreival technique called TF-IDF. Instead of just counting the number of occurrences of a term in a cluster, we assign a TF-IDF for each term and add those together. We simplified TF-IDF for our own use. because a term can only be present once each sentence, we only use IDF. The score for each cluster is now computed as:
 
+
+\begin{multicols}{2}
 \[ \gamma_c(t) =\left\{ \begin{matrix} \mbox{Tf-Idf}(t) & \mbox{if t is present in c} \\ 0 & \mbox{otherwise} \end{matrix} \right.\]
 
 
 \[ score_c = \sum_{t \in s} \gamma_c(t) \]
+\end{multicols}

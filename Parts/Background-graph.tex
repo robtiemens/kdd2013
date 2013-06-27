@@ -1,0 +1,28 @@
+
+We tried to derive the likelihood of a given author contributing to a certain paper by looking at the connections from that author to the other authors contributing to that paper in a social network graph.
+In order to determine if and how any two given authors from an unlabeled set are connected to one another, we ideally wanted to extract a measure of probability of any two authors collaborating based on the known data and construct weighted edges between these authors, in order to then find paths in our graph with the lowest weight to serve as a measure of maximum likelihood of co-authorship given the previously known social connections.
+
+We have constructed a graph where all authors from our data set are represented as vertices (nodes) and created directed edges between those based on their common occurrences in the papers of both our training and evaluation data set.
+Our idea to model relationships using this representation was directly inspired by the research done by Xiaoming Liu et al \cite{liu2005co}, who describe the chosen representation of the graph and suggest various metrics and classifier algorithms that may operate on it.
+
+Liu et al have specified a way to normalize the weight of a co-authoring relationship between two authors by averaging the measured frequency (sum of a pair's co-authorships weighted by the number other co-authors in those publications) by the summed frequency of the other author's co-authorships.
+
+\begin{align*}
+\textbf{Exclusivity}~
+	g_{i,j,k} &= 1 / (f(a_k)-1) \\
+\textbf{Co-authorship frequency}~
+	c_{i,j} &= \sum_{k=1}^{m} g_{i,j,k} \\
+\textbf{Normalized weight}~
+	w_{i,j} &= \frac{c_{i,j}}{\sum_{k=1}^{n} c_{i,k}}
+\end{align*}
+
+Our recipe for (sparsely) drawing the edges between author vertices and computing their weights based on this method is as follows:
+
+
+\begin{enumerate}
+  \item Create a relationship (edge) between each 2-pair of all authors from each paper (if it doesn't already exist).
+  \item Exclusivity: Each of these relationships gets a property of exclusivity, which represents the number of authors on this paper (which by inversion gives a relative exclusivity for their co-authoring relationship within this paper).
+  \item Frequency: The sum of these exclusivity values for each relationship over all co-authored papers (which can be aggregated as a single, summing property on the edge for all co-authorships of two connected authors to keep the graph sparse).
+  \item Weight (from A to B): The co-authorship frequency between A and B, averaged over the summed frequency of all of B's co-authorships.
+\end{enumerate}
+

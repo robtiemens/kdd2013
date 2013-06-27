@@ -1,6 +1,11 @@
-\section*{Introduction}
+\section{Introduction}
 
-For the course Machine learning in practice we entered the KDD-Cup. This years KDD-Cup is about author-paper identification. In this paper we discuss our approach to win this competition. The methodology is illustrated using the data provided by the KDD-Cup. our method involves three different methods to find features in the given data set. We used  
-a probabilistic author-topic model\cite{steyvers2004probabilistic} to extract topics from  the data, co-author graphs to get extra features from links between authors and we used some simple features provided by the data set. These features are used to train a random forest classifier.
+For the course ``Machine Learning in Practice'' we participated in the annual KDD-cup.
+This year's KDD-Cup is about author-paper identification.
+In this paper we present and discuss our approach to try to win this competition.
+The methodology is illustrated using the data provided by the KDD-Cup.
+Our approach involves three different methods to find features in the given data set.
+We've used a probabilistic author-topic model~\cite{steyvers2004probabilistic} to extract topics from  the data, co-authorship graphs to get extra features from social connections between authors~\cite{liu2005co} and we have used the simple features available from the benchmark example project provided by the competition organisers.
+These features are then used together to train a random forest classifier on the labeled data sets, which is then used to make predictions about the unlabeled data sets.
 
-The outline of the paper is as follows: in Section 2 we describe the background about author-topic model.
+The outline of the paper is as follows: in Section~\ref{sec:background} we describe the scientific background of our methods, then describe our implementation details in Sections~\ref{sec:graph-implementation},~\ref{sec:text-implementation},~\ref{sec:smaller-features-implementation} and \ref{sec:classifier-implementation}. Finally, we present our results in Section~\ref{sec:results}.

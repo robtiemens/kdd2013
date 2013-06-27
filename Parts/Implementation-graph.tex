@@ -1,43 +1,43 @@
-\section*{Co-author Graph}
+We have constructed a co-authorship graph model using the Java Universal Network/Graph (JUNG) Framework, an open-source Java library \cite{o2005analysis} and explored the possibilities of using the Neo4j graph database software \cite{rodrigez2010mysql} in search of better performance of our model with such a large data set.
 
-We tried to derive the likelihood of a given author contributing to a certain paper by looking at the connections from that author to the other authors contributing to that paper in a social network graph. We have constructed a co-authorship graph model using the Java Universal Network/Graph (JUNG) Framework, an open-source Java library \cite{o2005analysis} and explored the possibilities of using the Neo4j graph database software \cite{rodrigez2010mysql} in search of better performance of our model with such a large data set.
-In order to determine if and how any two given authors from an unlabeled set are connected to one another, we ideally wanted to extract a measure of probability of any two authors collaborating based on the known data and construct weighted edges between these authors, in order to then find paths in our graph with the lowest weight to serve as a measure of maximum likelihood of co-authorship given the previously known social connections.
+The first features included were only related to a given author, like for instance their number of co-authors (the number of outgoing connections) or the number of papers they have written.
+In order to determine the likelihood of two authors collaborating we wanted to use the (weighted) Dijkstra distance between two authors.
+We chose to use the Dijkstra distance as our basic measure because it works even with unweighted connections between authors and gives a reasonable indication of whether two authors are at least familiar to one another \cite{o2005analysis}.
+If it requires over 4 steps to connect one author to another by only using this co-authorship path it should be considered a large distance under the assumption that familiar people have at least cooperated once before or have at least one common coauthor resulting in a distance of respectively one and two.
+It is also shown by Erdős numbers that the number of steps that have to be taken from one to another is likely to be very limited resulting a quadratically scaled probability \cite{balaban2002co}.
 
-We have constructed a graph where all authors from our data set are represented as vertices (nodes) and created directed edges between those based on their common occurrences in the papers of both our training and evaluation data set. Our idea to model relationships using this representation was directly inspired by the research done by Xiaoming Liu et al \cite{liu2005co}, who describe the chosen representation of the graph and suggest various metrics and classifier algorithms that may operate on it\cite{liu2005co}.
-However, before we would be able to use any of them we would need to apply their recipe to calculate additional properties (weights) within the graph, so we first extracted simpler features.
+We used the Dijkstra shortest path algorithm to extract a feature of average and median shortest path distance between a given author and all other authors of that paper.
+This results in a measure of how near the author is to any other author who worked on that particular paper.
+During experimentation, many measurements of this distance resulted in the value zero or one (suggesting a collaborative  relationship with at least one other coauthor or no connections), so we devised several variations on this feature.
+Such a variation was a feature that counted the total number of times a specific author in a given paper had collaborated with a single co-author.
+If our Dijkstra distance would result in the value one, we would count the number of papers in which that distance would also equal one.
+This gave us an indication of how strong the connection is between two authors that collaborated frequently.
 
-The first features included were only related to a given author, like for instance their number of co-authors (the number of outgoing connections) or the number of papers they have written. In order to determine the likelihood of 2 authors collaborating we wanted to use the (weighted) Dijkstra distance between 2 authors. We chose to use the Dijkstra distance as our basic measure because it works even with unweighted connections between authors and gives a reasonable indication of whether two authors are at least familiar to one another \cite{o2005analysis}.  If it requires over 4 steps to connect one author to another by only using this co-authorship path it should be considered a large distance under the assumption that familiar people have at least cooperated once before or have at least one common coauthor resulting in a distance of respectively one and two. It is also shown by Erdős numbers that the number of steps that have to be taken from one to another is likely to be very limited resulting a quadratically scaled probability \cite{balaban2002co}.
+We built our graph based on the complete provided author/paper data set because it presents us with the largest base of what we assume is mostly-reliable information.
+We considered the occurrence of co-authorships incorrectly ascribed to any two authors to be limited, and that the overall co-authorship network is still usable even with such relative `noise' added to the graph.
+The benefit of including the training set was that it increases the connectedness of our graph, which proved to be a limiting factor in deriving co-authorship probabilities from our graph early on.
+We observed that on average over nine out of ten random author pairs were unable to connect through any path between the two vertices.
+After including the full data set, low connectivity was still problematic albeit to a lower degree.
+When evaluating author pairs in the graph we took into account that the evaluation data set was included and compensated for this by removing the edges between the vertices of the pair of authors that were being evaluated if those were created from the evaluation data set.
+We constructed our graph to be sparse and to have directed edges which we attempted to assign weights to later on.
+For our first set of simple features this was not necessary. 
 
-We used the Dijkstra shortest path algorithm to extract a feature of average and median shortest path distance between a given author and all other authors of that paper. This results in a measure of how near the author is to any other author who worked on that particular paper. During experimentation, many measurements of this distance resulted in the value zero or one (suggesting a collaborative  relationship with at least one other coauthor or no connections), so we devised several variations on this feature. Such a variation was a feature that counted the total number of times a specific author in a given paper had collaborated with a single co-author. If our Dijkstra distance would result in the value one, we would count the number of papers in which that distance would also equal one. This gave us an indication of how strong the connection is between 2 authors that collaborated frequently.
-
-We built our graph based on the complete provided author/paper data set because it presents us with the largest base of what we assume is mostly-reliable information. We considered the occurrence of co-authorships incorrectly ascribed to any two authors to be limited, and that the overall co-authorship network is still usable even with such relative `noise’ added to the graph. The benefit of including the training set was that it increases the connectedness of our graph, which proved to be a limiting factor in deriving co-authorship probabilities from our graph early on. We observed that on average over nine out of ten random author pairs were unable to connect through any path between the two vertices. After including the full data set, low connectivity was still problematic albeit to a lower degree. When evaluating author pairs in the graph we took into account that the evaluation data set was included and compensated for this by removing the edges between the vertices of the pair of authors that were being evaluated if those were created from the evaluation data set.  We constructed our graph to be sparse and to have directed edges which we attempted to assign weights to later on. For our first set of simple features this was not necessary. 
-
-The features described so far do not take into account the weight of relative coauthorship frequency between authors as described by Liu et al [4]. We should establish such a measure because an author that produces many papers is more likely to have a collaboration with a randomly selected author than an author who produces only rarely. Liu et al have specified a way to normalize the weight of a co-authoring relationship between two authors by averaging the measured frequency (sum of a pair’s co-authorships weighted by the number other co-authors in those publications) by the summed frequency of the other author’s co-authorships to produce a normalized weight for the edge connecting these two authors.
-
-Our recipe (borrowed from Liu et al) for (sparsely) drawing the edges between author vertices and computing their weights is as follows:
-
-
-\begin{enumerate}
-
-
-
-  \item Create a relationship (edge) between each 2-pair of all authors from each paper (if it doesn’t already exist).
-  \item Exclusivity: Each of these relationships gets a property of exclusivity, which represents the number of authors on this paper (which by inversion gives a relative exclusivity for their co-authoring relationship within this paper).
-  \item Frequency: The sum of these exclusivity values for each relationship over all co-authored papers (which can be aggregated as a single, summing property on the edge for all co-authorships of two connected authors to keep the graph sparse).
-  \item Weight (from A to B): The co-authorship frequency between A and B, averaged over the summed frequency of all of B’s co-authorships.
-
-\end{enumerate}
-(TODO neem hier de formules uit dat paper over.)
-
-At this point we ran into (time and memory-related) trouble because there exists a very large number of pairwise author combinations for which we want to calculate exclusivity/frequency and the resulting normalized weight. The problem stems from the way in which the modeled co-authorships relate to our graph structure. We need to construct relationships (with an exclusivity property) for every (N choose 2) pairs of authors of every paper with N authors, in two directions. If that wasn’t enough, we would then like to compute the frequency for each relationship by doing aggregates for every such relationship and finally aggregate these aggregates in second-order queries for every single relationship to compute their weight (quadratic).
+The features described so far do not take into account the weight of relative coauthorship frequency between authors as described by Liu et al \cite{liu2005co}.
+We should establish such a measure because an author that produces many papers is more likely to have a collaboration with a randomly selected author than an author who produces only rarely.
+At this point we ran into (time and memory-related) trouble because there exists a very large number of pairwise author combinations for which we want to calculate exclusivity/frequency and the resulting normalized weight.
+The problem stems from the way in which the modeled co-authorships relate to our graph structure.
+We need to construct relationships (with an exclusivity property) for every $n \choose 2$ pairs of authors of every paper with $n$ authors, in two directions.
+If that wasn't enough, we would then like to compute the frequency for each relationship by doing aggregates for every such relationship and finally aggregate these aggregates in second-order queries for every single relationship to compute their weight (quadratic).
 This becomes quite problematic as the number of authors of a paper grows, and we concluded neither PostgreSQL, MySQL nor JUNG were really the right tools for this job.
 As some of the papers feature more than 100 authors this was fast becoming an intractable problem.
 
-We considered simply omitting papers with more than 10 or so reported authors from the weight calculation, but were concerned that this might discard too much valuable information. After all, it might just be that specifically these `problematic’ papers would provide us with highly connected author nodes which function as interconnection `hubs’, to better connect otherwise unplaceable authors.
+We considered simply omitting papers with more than 10 or so reported authors from the weight calculation, but were concerned that this might discard too much valuable information.
+After all, it might just be that specifically these `problematic' papers would provide us with highly connected author nodes which function as interconnection `hubs', to better connect otherwise unplaceable authors.
 
-To further investigate the possibility of applying Liu et al’s model, which we expected to be computationally heavy but not infeasible (and highly parallelizable) in the time/hardware we had, we turned to the Neo4j software package for graph databases.
+To further investigate the possibility of applying Liu et al's model, which we expected to be computationally heavy but not infeasible (and highly parallelizable) in the time/hardware we had, we turned to the Neo4j software package for graph databases.
 
-Neo4j is a so-called graph database, a type of data storage which differs from conventional relational databases by representing data models not as tables but as property graphs, i.e. a graph in which the nodes and edges have some saved properties. It features a built-in query language called Cypher, which is somewhat similar to SQL and can be used to traverse the graph and query its properties.
+Neo4j is a so-called graph database, a type of data storage which differs from conventional relational databases by representing data models not as tables but as property graphs, i.e. a graph in which the nodes and edges have some saved properties.
+It features a built-in query language called Cypher, which is somewhat similar to SQL and can be used to traverse the graph and query its properties.
 The software boasts useful features like transactional operations, high speed, scalability, availability and consistency.
 
 \begin{verbatim}
@@ -48,7 +48,7 @@ SET author.coauthorships = sum
 RETURN author
 \end{verbatim}
 
-While this is certainly an enabling technology for this kind of research, we ran into some unexpected scaling problems when trying to apply Liu’s model to the KDD cup data set.
+While this is certainly an enabling technology for this kind of research, we ran into some unexpected scaling problems when trying to apply Liu's model to the KDD cup data set.
 While we are newcomers to the technology, we sought to apply it as best we did understand it using the available resources from the project.
 
 The issues that led us to cancel our excursion into Neo4j later on:
@@ -57,12 +57,18 @@ The issues that led us to cancel our excursion into Neo4j later on:
 
 
 \item[1] The query language interpreter appears to lack an optimizer which parallelizes aggregate operations (in our case: summing values) over paged results, leading to aggregators running in a single thread and attempting to return the full aggregate in one thread context rather than applying something like a map/reduce pattern internally - this eventually leads to memory exhaustion.
-We devised our own aggregator using pagination, but did so from outside the Neo4j context. The performance still proved unsatisfactory but eventually managed to compute the co-authorship frequencies for all relationships as properties on the edges.
-The aggregate also seemed to not stay cached, but even when we did cache the aggregate values (by saving them to the related edge as a property) performance was still below our expectations. Later on we realized this is partly due to the nature of the aggregation itself - no traversed properties are ever re-used after frequencies are computed.
+We devised our own aggregator using pagination, but did so from outside the Neo4j context.
+The performance still proved unsatisfactory but eventually managed to compute the co-authorship frequencies for all relationships as properties on the edges.
+The aggregate also seemed to not stay cached, but even when we did cache the aggregate values (by saving them to the related edge as a property) performance was still below our expectations.
+Later on we realized this is partly due to the nature of the aggregation itself - no traversed properties are ever re-used after frequencies are computed.
 
-\item[2] The software’s multi-threading model is a basic producer/consumer pattern, but there is no built-in option to use more than one producer thread. On fast many-core machines, this leads to consumer threads whose workloads are exhausted sooner than they can be appointed new work by the producer, leading to poor multicore performance.
+\item[2] The software's multi-threading model is a basic producer/consumer pattern, but there is no built-in option to use more than one producer thread.
+	On fast many-core machines, this leads to consumer threads whose workloads are exhausted sooner than they can be appointed new work by the producer, leading to poor multicore performance.
 \end{enumerate}
 Because at this point we did start to fear this approach to the problem might be practically infeasible for the given case, we started exploring other graph features that were lighter to compute at the last minute before the competition would close, but then decided we should rather use our basic graph features from the JUNG project instead and begin work on submissions.
-Given the time invested in this one approach we had hoped to gain more usable features, but certainly still see possibilities of applying the method of social network analysis to the proposed problem. With our efforts we were able to get to step 3 of our 4-step recipe: we managed to construct co-authorship relationships between any two authors for all paper/author combinations in the given data set with high efficiency (completing in minutes on a cheap multicore Atom netbook) using Neo4j and apply step 3 in a about a day on the same hardware. Step 4 is understandably the most computationally expensive (quadratic), and the performance issues we encountered in Neo4j that prevented us from using faster/bigger hardware caused us to finally abandon the chosen approach.
+Given the time invested in this one approach we had hoped to gain more usable features, but certainly still see possibilities of applying the method of social network analysis to the proposed problem.
+With our efforts we were able to get to step 3 of our 4-step recipe: we managed to construct co-authorship relationships between any two authors for all paper/author combinations in the given data set with high efficiency (completing in minutes on a cheap multicore Atom netbook) using Neo4j and apply step 3 in a about a day on the same hardware.
+Step 4 of our recipe is understandably the most computationally expensive (quadratic), and the performance issues we encountered in Neo4j that prevented us from using faster/bigger hardware caused us to finally abandon the chosen approach.
 We suspect that the low interconnectedness we observed was due to the fact that the competition data set was extracted from a larger data set and we appear to have lost the interconnectedness we would expect to see in a real world social network.
-We regret to not have considered (as other participating teams did) ways to augment the known connections between authors by linking them through other relationships such as mutual contributions to the same journal or conference, but the N in our (N choose 2) relationships would generally become even larger.
+We regret to not have considered (as other participating teams did) ways to augment the known connections between authors by linking them through other relationships such as mutual contributions to the same journal or conference, but the $n$ in our $n \choose 2$ relationships would generally become even larger.
+
