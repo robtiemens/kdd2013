@@ -7,7 +7,25 @@ Our idea to model relationships using this representation was directly inspired 
 
 Liu et al have specified a way to normalize the weight of a co-authoring relationship between two authors by averaging the measured frequency (sum of a pair's co-authorships weighted by the number other co-authors in those publications) by the summed frequency of the other author's co-authorships to produce a normalized weight for the edge connecting these two authors.
 
-Our recipe (borrowed from Liu et al) for (sparsely) drawing the edges between author vertices and computing their weights is as follows:
+\textbf{Exclusivity}
+
+\begin{math}
+  g_{i,j,k} = 1 / (f(a_k)-1)
+\end{math}
+
+\textbf{Co-authorship frequency}
+
+\begin{math}
+  c_{i,j} = \sum_{k=1}^{m} g_{i,j,k}
+\end{math}
+
+\textbf{Normalized weight}
+
+\begin{math}
+  w_{i,j} = \frac{c_{i,j}}{\sum_{k=1}^{n} c_{i,k}}
+\end{math}
+
+Our recipe for (sparsely) drawing the edges between author vertices and computing their weights based on this method is as follows:
 
 
 \begin{enumerate}
@@ -16,5 +34,4 @@ Our recipe (borrowed from Liu et al) for (sparsely) drawing the edges between au
   \item Frequency: The sum of these exclusivity values for each relationship over all co-authored papers (which can be aggregated as a single, summing property on the edge for all co-authorships of two connected authors to keep the graph sparse).
   \item Weight (from A to B): The co-authorship frequency between A and B, averaged over the summed frequency of all of B's co-authorships.
 \end{enumerate}
-(TODO neem hier de formules uit dat paper over.)
 

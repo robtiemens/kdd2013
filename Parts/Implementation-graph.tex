@@ -1,7 +1,7 @@
 We have constructed a co-authorship graph model using the Java Universal Network/Graph (JUNG) Framework, an open-source Java library \cite{o2005analysis} and explored the possibilities of using the Neo4j graph database software \cite{rodrigez2010mysql} in search of better performance of our model with such a large data set.
 
 The first features included were only related to a given author, like for instance their number of co-authors (the number of outgoing connections) or the number of papers they have written.
-In order to determine the likelihood of 2 authors collaborating we wanted to use the (weighted) Dijkstra distance between 2 authors.
+In order to determine the likelihood of two authors collaborating we wanted to use the (weighted) Dijkstra distance between two authors.
 We chose to use the Dijkstra distance as our basic measure because it works even with unweighted connections between authors and gives a reasonable indication of whether two authors are at least familiar to one another \cite{o2005analysis}.
 If it requires over 4 steps to connect one author to another by only using this co-authorship path it should be considered a large distance under the assumption that familiar people have at least cooperated once before or have at least one common coauthor resulting in a distance of respectively one and two.
 It is also shown by Erdős numbers that the number of steps that have to be taken from one to another is likely to be very limited resulting a quadratically scaled probability \cite{balaban2002co}.
@@ -11,7 +11,7 @@ This results in a measure of how near the author is to any other author who work
 During experimentation, many measurements of this distance resulted in the value zero or one (suggesting a collaborative  relationship with at least one other coauthor or no connections), so we devised several variations on this feature.
 Such a variation was a feature that counted the total number of times a specific author in a given paper had collaborated with a single co-author.
 If our Dijkstra distance would result in the value one, we would count the number of papers in which that distance would also equal one.
-This gave us an indication of how strong the connection is between 2 authors that collaborated frequently.
+This gave us an indication of how strong the connection is between two authors that collaborated frequently.
 
 We built our graph based on the complete provided author/paper data set because it presents us with the largest base of what we assume is mostly-reliable information.
 We considered the occurrence of co-authorships incorrectly ascribed to any two authors to be limited, and that the overall co-authorship network is still usable even with such relative `noise' added to the graph.
