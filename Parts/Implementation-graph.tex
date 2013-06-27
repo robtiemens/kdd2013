@@ -38,6 +38,8 @@ Neo4j is a so-called graph database, a type of data storage which differs from c
 It features a built-in query language called Cypher, which is somewhat similar to SQL and can be used to traverse the graph and query its properties.
 The software boasts useful features like transactional operations, high speed, scalability, availability and consistency.
 
+\begin{figure}[htb]
+\centering
 \begin{verbatim}
 START author=node({author_id:42})
 MATCH (author)-[coauthorship]->(coauthor)
@@ -45,6 +47,9 @@ WITH author,COUNT(coauthorship) as sum
 SET author.coauthorships = sum
 RETURN author
 \end{verbatim}
+\caption{An example of a query in the Cypher language from Neo4j which counts the co-authorhips of a given author.}
+\label{fig:cypher}
+\end{figure}
 
 While this is certainly an enabling technology for this kind of research, we ran into some unexpected scaling problems when trying to apply Liu's model to the KDD cup data set.
 While we are newcomers to the technology, we sought to apply it as best we did understand it using the available resources from the project.
