@@ -1,18 +1,22 @@
 The provided datasets contain the following information
 
-An Author dataset with profile information about 250.000 authors, such as author name and affiliation. The same author can appear more than once in this dataset, for instance because he/she publishes under different versions of his/her name, such as T. Heskes or Tom Heskes.
 
+\clearpage
+
+\begin{table}
 \begin{tabular}{| l | p{8cm} |} \hline
-\textbf{Name} & \textbf{Comments} \\ \hline
+\textbf{Field} & \textbf{Data} \\ \hline
 ID & Id of the author \\ \hline
 Name & Author Name \\ \hline
 Affiliation & Organization name with which the author is affiliated \\ \hline
 \end{tabular}
 
-A Paper dataset with data about 2.5 million papers, such as paper title, conference/journal information, and keywords. The same paper may have been obtained through different data sources and hence have multiple copies in the dataset.
+\caption{An Author dataset with profile information about 250.000 authors, such as author name and affiliation. The same author can appear more than once in this dataset, for instance because he/she publishes under different versions of his/her name, such as T. Heskes or Tom Heskes.}
+\end{table}
 
+\begin{table}
 \begin{tabular}{| l | p{8cm} |} \hline
-\textbf{Name} & \textbf{Comments} \\ \hline
+\textbf{Field} & \textbf{Data} \\ \hline
 Id &  Id of the paper \\ \hline
 Title & Title of the paper \\ \hline
 Year & Year of the paper \\ \hline
@@ -20,35 +24,40 @@ ConferenceId & Conference Id in which paper was published \\ \hline
 JournalId & Journal Id in which paper was published \\ \hline
 Keywords &  Keywords of the paper \\\hline
 \end{tabular}
+\caption{A Paper dataset with data about 2.5 million papers, such as paper title, conference/journal information, and keywords. The same paper may have been obtained through different data sources and hence have multiple copies in the dataset.}
+\end{table}
 
-A corresponding Paper-Author dataset with (paper ID, author ID) pairs. The Paper-Author dataset is noisy, containing possibly incorrect paper-author assignments that are due to author name ambiguity and variations of author names.
-
+\begin{table}
 \begin{tabular}{| l | p{8cm} |} \hline
-Name & Comments \\ \hline
+\textbf{Field} & \textbf{Data} \\ \hline
 PaperId & Paper Id \\ \hline
 AuthorId & Author Id \\ \hline
-Name  &  Author Name (as written on paper) \\ \hline
+Field  &  Author Name (as written on paper) \\ \hline
 Affiliation  & Author Affiliation (as written on paper) \\ \hline
 \end{tabular}
+\caption{A corresponding Paper-Author dataset with (paper ID, author ID) pairs. The Paper-Author dataset is noisy, containing possibly incorrect paper-author assignments that are due to author name ambiguity and variations of author names.}
+\end{table}
 
-
-Since each paper is either a conference or a journal, additional metadata about conferences and journals is provided where available.
-
+\begin{table}
 \begin{tabular}{| l | p{8cm} |} \hline
-Name & Comments  \\ \hline
+\textbf{Field} & \textbf{Data}  \\ \hline
 Id & Conference Id or Journal Id  \\ \hline
 ShortName & Short name  \\ \hline
 Fullname & Full name  \\ \hline
 Homepage & Homepage URL of conference or journal  \\ \hline
 \end{tabular}
+\caption{Since each paper is either a conference or a journal, additional metadata about conferences and journals is provided where available.}
+\end{table}
+\clearpage
 
-
-Papers that authors have \emph{confirmed} (acknowledging they were the author) or deleted (meaning they were not the author) have been split into Train, Validation, and Test sets based on the author's Id. 
-
+\begin{table}
 \begin{tabular}{| l | p{8cm} |} \hline
-Name & Comments  \\ \hline
+\textbf{Field} & \textbf{Data}  \\ \hline
 AuthorId & Id of the author \\ \hline
 DeletedPaperIds & Space-delimited set of deleted papers (Train only)  \\ \hline
 ConfirmedPaperIds  & Confirmed papers (Train only)  \\ \hline
 PaperIds & PaperIds to rank from most likely to be deleted to least likely (Valid and Test only)  \\ \hline
 \end{tabular}
+\caption{Papers that authors have \emph{confirmed} (acknowledging they were the author) or \emph{deleted} (meaning they were not the author) have been split into Train, Validation, and Test sets based on the author's Id.}
+\end{table}
+
