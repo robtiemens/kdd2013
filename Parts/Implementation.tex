@@ -1,0 +1,49 @@
+
+\section*{Co author graph}
+
+\input{parts/implementation-graph.tex}
+
+\section*{Text analyses}
+
+\input{parts/implementation-text.tex}
+
+\section*{Smaller features}
+
+The data from this also contained smaller, easier to extract, features. The features we also found for \textit{every} paper-author combination.
+
+\begin{itemize}
+\item[]Dates. For each author we also include
+\begin{itemize}
+\item[] First year. The first year the author published a paper. We only looked for papers with a year greater then 1800. All years below are considered bias.
+\item[] Last year. The last year the author published a paper. We only looked for papers with a year lower then 2013. All years above are considered bias.
+\item[] Average year. Weighted average of all the years the author published a paper.
+\item[] Standard deviation of all years
+\end{itemize}
+\item[] Number of papers written
+\item[] Number of journals published in 
+\item[] Number of conferences
+\end{itemize}
+
+
+\section*{Classifying the authors and papers}
+
+For our final submission we used two sets of data with the following columns.
+
+\begin{itemize}
+\item [] AuthorID 
+\item [] PaperID 
+\item [] $score_1 \cdots \cdots score_{20}$ 
+\item [] First year 
+\item [] Last year 
+\item [] Average year 
+\item [] Year Standard deviation 
+\item [] Number of papers written
+\item [] Number of journals published in 
+\item [] Number of conferences
+\end{itemize}
+
+We only used the valid set to train our classifier. After we trained the classifier we applied the classifier to the test set. because the classifier also gives a probability we used that to rank the outcome.
+
+
+
+

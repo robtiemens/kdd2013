@@ -1,0 +1,56 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdftex 2013.6.22)  22 JUN 2013 16:36
+entering extended mode
+**C:/Users/Rob/Dropbox/KDD2013/references.bib
+(C:/Users/Rob/Dropbox/KDD2013/references.bib
+Overfull \hbox (29.20438pt too wide) in paragraph at lines 13--21
+[]\tenrm @incollectionglanzel2005analysing, ti-tle=Analysing sci-en-tific net-w
+orks through co-authorship, au-thor=Glanzel,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm i
+.\tenrm n
+.\tenrm c
+.etc.
+
+
+Overfull \hbox (13.0377pt too wide) in paragraph at lines 34--41
+\tenrm weight vec-tor, au-thor=Niels, Ralph and Groot-jen, Franc and Vu-urpijl,
+ Louis and oth-ers, book-ti-tle=International|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\tenrm w
+.\kern-0.27779
+.\tenrm e
+.\tenrm i
+.\tenrm g
+.etc.
+
+
+Overfull \hbox (17.88504pt too wide) in paragraph at lines 63--69
+[]\tenrm @bookchowdhury2010introduction, ti-tle=Introduction to mod-ern in-for-
+ma-tion re-trieval, au-thor=Chowdhury,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm b
+.\kern0.27779
+.\tenrm o
+.etc.
+
+)
+*
+(Please type a command or say `\end')
+*
+(Please type a command or say `\end')
+*
+(Please type a command or say `\end')
+*
+! Emergency stop.
+<*> 
+    
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!
