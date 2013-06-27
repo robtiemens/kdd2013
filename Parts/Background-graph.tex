@@ -26,3 +26,5 @@ Our recipe for (sparsely) drawing the edges between author vertices and computin
   \item Weight (from A to B): The co-authorship frequency between A and B, averaged over the summed frequency of all of B's co-authorships.
 \end{enumerate}
 
+If it requires over 4 steps to connect one author to another by only using this co-authorship path it should be considered a large distance under the assumption that familiar people have at least cooperated once before or have at least one common coauthor resulting in a distance of respectively one and two.
+It is also shown by Erd\"os numbers that the number of steps that have to be taken from one to another is likely to be very limited resulting a quadratically scaled probability \cite{balaban2002co}.

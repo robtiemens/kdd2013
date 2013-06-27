@@ -2,9 +2,7 @@ We have constructed a co-authorship graph model using the Java Universal Network
 
 The first features included were only related to a given author, like for instance their number of co-authors (the number of outgoing connections) or the number of papers they have written.
 In order to determine the likelihood of two authors collaborating we wanted to use the (weighted) Dijkstra distance between two authors.
-We chose to use the Dijkstra distance as our basic measure because it works even with unweighted connections between authors and gives a reasonable indication of whether two authors are at least familiar to one another \cite{o2005analysis}.
-If it requires over 4 steps to connect one author to another by only using this co-authorship path it should be considered a large distance under the assumption that familiar people have at least cooperated once before or have at least one common coauthor resulting in a distance of respectively one and two.
-It is also shown by Erdős numbers that the number of steps that have to be taken from one to another is likely to be very limited resulting a quadratically scaled probability \cite{balaban2002co}.
+We chose to use the Dijkstra distance as our basic measure because it works even with unweighted connections between authors and gives a reasonable indication of whether two authors are at least familiar to one another.
 
 We used the Dijkstra shortest path algorithm to extract a feature of average and median shortest path distance between a given author and all other authors of that paper.
 This results in a measure of how near the author is to any other author who worked on that particular paper.

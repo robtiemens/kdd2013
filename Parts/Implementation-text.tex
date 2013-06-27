@@ -1,32 +1,43 @@
 %\subsection*{Text analyses \label{sec:imp-text}}
 
-In section \ref{sec:text-background} we introduced a model to create topics from a large collection of text. We adjusted that approach to the problem we needed to solve. We did not have a lot of text from each of the papers. From each paper we only know the title and keyterms. We did not choose to use the keyterms. The keyterms contained a lot of bias and parsing the keyterms in a usable format proved to be difficult. We instead used the titles of the journal or conference the paper was published in. This method has two advantages:
+In section \ref{sec:text-background} we introduced a model to create topics from a large collection of text. We adjusted that approach to the problem we needed to solve. We did not have a lot of text from each of the papers. From each paper we only knew its title and keywords.
+We did not choose to use the keywords.
+The keywords contained a lot of bias and parsing them in a usable format proved to be difficult.
+We instead used the titles of the journal or conference the paper was published in.
+This method has two advantages:
 
 \begin{itemize}
-\item[1] we have more terms to identify a paper.
-\item[2] More terms are related to each other. If for example the "Automatic detection of acute bacterial pneumonia from chest X-ray reports" was published in a journal congaing the terms "machine learning",  machine learning and X-ray are related. 
+\item[1] We have more terms to identify a paper.
+\item[2] More terms are related to each other. If for example the "Automatic detection of acute bacterial pneumonia from chest X-ray reports" was published in a journal containing the terms ``machine learning'', then the terms ``machine learning'' and ``X-ray'' are considered to be related. 
 \end{itemize}
 
-We now have an sentence $s$ describing the content of paper $p$. Next, all the diacritics, stopterms (in multiple languages), interpunction and double terms are removed from sentence $s$. This saves a lot of entries in the dictionary\cite{chowdhury2010introduction}. After processing sentence $s$, all terms that co-occur in the same sentence are counted and the result is stored in matrix $M$. A short example with some of the terms in sentence $s$ is worked out in tables \ref{tab:before} and \ref{tab:after}.
+We now have a sentence $s$ describing the content of paper $p$.
+Next, all the diacritics, stopwords (in multiple languages), interpunction and double terms are removed from sentence $s$.
+This saves a lot of entries in the dictionary\cite{chowdhury2010introduction}.
+After processing sentence $s$, all terms that co-occur in the same sentence are counted and the result is stored in matrix $M$.
+A simple example with some of the terms in sentence $s$ is worked out in tables \ref{tab:before} and \ref{tab:after}.
 
 \begin{table}
+	\label{tab:before}
 	\begin{center}
 	
 
 \begin{tabular}{|l|l|l|l|l|}
 \hline
 	 	& acute  & learning & machine &  x-ray \\ \hline
-acute 	&	0 	& 	1 &	 2 &  0	 \\ \hline
-learning&	1	&	0 &	 3 &  0	 \\ \hline
-machine &	2	&	3 &	 0 &  0	 \\ \hline
-x-ray	&	0	&	0 &	 0 &  0	 \\ \hline
+acute 	&	0 	& 	0 &	 0 &  1	 \\ \hline
+learning&	0	&	0 &	 0 &  0	 \\ \hline
+machine &	0	&	0 &	 0 &  0	 \\ \hline
+x-ray	&	1	&	0 &	 0 &  0	 \\ \hline
 
 \end{tabular} 
+	\caption{A paper titled ``Automatic detection of acute bacterial pneumonia from chest X-ray reports'', split up into a word matrix where related / connected words are counted.}
 	\end{center}
 \end{table}
 
 
 \begin{table}
+	\label{tab:after}
 	\begin{center}
 
 \begin{tabular}{|l|l|l|l|l|}
@@ -38,6 +49,7 @@ machine &	3	&	4 &	 0 &  1	 \\ \hline
 x-ray	&	1	&	1 &	 1 &  0	 \\ \hline
 \end{tabular} 
 
+\caption{The same paper, added to a matrix which already had some word counts for `machine' and `learning', which we decided to link to based on the journal/conference where the paper was contributed.}
 	\end{center}
 \end{table}
 
