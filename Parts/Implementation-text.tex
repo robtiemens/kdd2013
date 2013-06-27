@@ -60,7 +60,7 @@ Note that matrix $M$ is symmetric and very sparse. We used this to our advantage
 
 In the previous subsection we created matrix $M$. Each row is a separate vector $v$ containing information form which terms co-occurs with a another term. Each vector $v$ is then clustered into one of the $c$ clusters with k-means. In our case, we choose  $c = 20$. The number 20 is a wild guess. In the original paper \cite{steyvers2004probabilistic}, the authors use 300 clusters, but our computers were not able to process that number of clusters. Each cluster now contains terms that co-occur a lot. We call a cluster a topic, just as the original paper. As a distance measure we choose \emph{cosine similarity}. Cosine similarity measures the distance between two vectors. The cosine similarity has a big advantage over the Euclidean distance \cite{chowdhury2010introduction}.  
 
-Not that the authors use EM to cluster matrix $M$. This gives the authors a probability of each term for each cluster. because we used k-means we do not have that information anymore. We only which term is in a certain cluster. In our case, each term can only be in a single cluster.
+Note that the authors use  to cluster matrix $M$. This gives the authors a probability of each term for each cluster. because we used k-means we do not have that information anymore. We only which term is in a certain cluster. In our case, each term can only be in a single cluster.
 
 \subsubsection*{Scoring}
 
