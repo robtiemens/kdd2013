@@ -8,8 +8,8 @@ Our idea to model relationships using this representation was directly inspired 
 Liu et al have specified a way to normalize the weight of a co-authoring relationship between two authors by averaging the measured frequency (sum of a pair's co-authorships weighted by the number other co-authors in those publications) by the summed frequency of the other author's co-authorships.
 
 \begin{align*}
-\textbf{Count authors}~
-	f(a_k) &= \#authors \\
+\textbf{Contributing authors}~
+	f(a_k) &= \#\{ authors \mid \mbox{contributed to paper } k \} \\
 \textbf{Exclusivity}~
 	g_{i,j,k} &= 1 / (f(a_k)-1) \\
 \textbf{Co-authorship frequency}~
