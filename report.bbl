@@ -1,6 +1,12 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
 \begin{thebibliography}{LBNVdS05}
 
+\bibitem[BK02]{balaban2002co}
+Alexandru~T Balaban and Douglas~J Klein.
+\newblock Co-authorship, rational erd{\H{o}}s numbers, and resistance distances
+  in graphs.
+\newblock {\em Scientometrics}, 55(1):59--70, 2002.
+
 \bibitem[Cho10]{chowdhury2010introduction}
 G~Chowdhury.
 \newblock {\em Introduction to modern information retrieval}.
@@ -11,6 +17,14 @@ Wolfgang Gl{\"a}nzel and Andr{\'a}s Schubert.
 \newblock Analysing scientific networks through co-authorship.
 \newblock In {\em Handbook of quantitative science and technology research},
   pages 257--276. Springer, 2005.
+
+\bibitem[Kag13]{kddcupsite}
+Kaggle.
+\newblock {KDD Cup 2013 - Author-Paper Identification Challenge (Track 1)}.
+\newblock
+  \url{https://www.kaggle.com/c/kdd-cup-2013-author-paper-identification-challenge},
+  2013.
+\newblock [Online; accessed 27-June-2013].
 
 \bibitem[LBNVdS05]{liu2005co}
 Xiaoming Liu, Johan Bollen, Michael~L Nelson, and Herbert Van~de Sompel.
@@ -43,6 +57,16 @@ Ralph Niels, Franc Grootjen, Louis Vuurpijl, et~al.
   weight vector.
 \newblock In {\em International Conference on Frontiers in Handwriting
   Recognition}, pages 481--486, 2008.
+
+\bibitem[OFS{\etalchar{+}}05]{o2005analysis}
+Joshua O'Madadhain, Danyel Fisher, Padhraic Smyth, Scott White, and Yan-Biao
+  Boey.
+\newblock Analysis and visualization of network data using jung.
+\newblock {\em Journal of Statistical Software}, 10(2):1--35, 2005.
+
+\bibitem[Rod10]{rodrigez2010mysql}
+MA~Rodrigez.
+\newblock Mysql vs. neo4j on a large-scale graph traversal, 2010.
 
 \bibitem[SSRZG04]{steyvers2004probabilistic}
 Mark Steyvers, Padhraic Smyth, Michal Rosen-Zvi, and Thomas Griffiths.
