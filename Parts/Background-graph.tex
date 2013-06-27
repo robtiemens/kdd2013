@@ -5,25 +5,16 @@ In order to determine if and how any two given authors from an unlabeled set are
 We have constructed a graph where all authors from our data set are represented as vertices (nodes) and created directed edges between those based on their common occurrences in the papers of both our training and evaluation data set.
 Our idea to model relationships using this representation was directly inspired by the research done by Xiaoming Liu et al \cite{liu2005co}, who describe the chosen representation of the graph and suggest various metrics and classifier algorithms that may operate on it.
 
-Liu et al have specified a way to normalize the weight of a co-authoring relationship between two authors by averaging the measured frequency (sum of a pair's co-authorships weighted by the number other co-authors in those publications) by the summed frequency of the other author's co-authorships to produce a normalized weight for the edge connecting these two authors.
+Liu et al have specified a way to normalize the weight of a co-authoring relationship between two authors by averaging the measured frequency (sum of a pair's co-authorships weighted by the number other co-authors in those publications) by the summed frequency of the other author's co-authorships.
 
-\textbf{Exclusivity}
-
-\begin{math}
-  g_{i,j,k} = 1 / (f(a_k)-1)
-\end{math}
-
-\textbf{Co-authorship frequency}
-
-\begin{math}
-  c_{i,j} = \sum_{k=1}^{m} g_{i,j,k}
-\end{math}
-
-\textbf{Normalized weight}
-
-\begin{math}
-  w_{i,j} = \frac{c_{i,j}}{\sum_{k=1}^{n} c_{i,k}}
-\end{math}
+\begin{align*}
+\textbf{Exclusivity}~
+	g_{i,j,k} &= 1 / (f(a_k)-1) \\
+\textbf{Co-authorship frequency}~
+	c_{i,j} &= \sum_{k=1}^{m} g_{i,j,k} \\
+\textbf{Normalized weight}~
+	w_{i,j} &= \frac{c_{i,j}}{\sum_{k=1}^{n} c_{i,k}}
+\end{align*}
 
 Our recipe for (sparsely) drawing the edges between author vertices and computing their weights based on this method is as follows:
 
