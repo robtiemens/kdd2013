@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.2.27)  27 JUN 2013 10:53
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.2.27)  27 JUN 2013 13:26
 entering extended mode
 **report.tex
-(C:\Users\Rob\Dropbox\KDD2013\report.tex
+(C:\Kdd\report.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -347,50 +347,101 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
 )
-(C:\Users\Rob\Dropbox\KDD2013\report.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\multicol.sty"
+Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
+\c@tracingmulticols=\count100
+\mult@box=\box28
+\multicol@leftmargin=\dimen114
+\c@unbalance=\count101
+\c@collectmore=\count102
+\doublecol@number=\count103
+\multicoltolerance=\count104
+\multicolpretolerance=\count105
+\full@width=\dimen115
+\page@free=\dimen116
+\premulticols=\dimen117
+\postmulticols=\dimen118
+\multicolsep=\skip46
+\multicolbaselineskip=\skip47
+\partial@page=\box29
+\last@line=\box30
+\mult@rightbox=\box31
+\mult@grightbox=\box32
+\mult@gfirstbox=\box33
+\mult@firstbox=\box34
+\@tempa=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\c@columnbadness=\count106
+\c@finalcolumnbadness=\count107
+\last@try=\dimen119
+\multicolovershoot=\dimen120
+\multicolundershoot=\dimen121
+\mult@nat@firstbox=\box52
+\colbreak@box=\box53
+\multicol@sort@counter=\count108
+)
+(C:\Kdd\report.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count100
-\scratchdimen=\dimen114
-\scratchbox=\box28
-\nofMPsegments=\count101
-\nofMParguments=\count102
+\scratchcounter=\count109
+\scratchdimen=\dimen122
+\scratchbox=\box54
+\nofMPsegments=\count110
+\nofMParguments=\count111
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count103
-\MPscratchDim=\dimen115
-\MPnumerator=\count104
-\makeMPintoPDFobject=\count105
+\MPscratchCnt=\count112
+\MPscratchDim=\dimen123
+\MPnumerator=\count113
+\makeMPintoPDFobject=\count114
 \everyMPtoPDFconversion=\toks23
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 14.
+LaTeX Font Info:    Try loading font information for U+msa on input line 15.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 14.
+LaTeX Font Info:    Try loading font information for U+msb on input line 15.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
+Overfull \hbox (3.56606pt too wide) in paragraph at lines 19--20
+[]\OT1/cmr/m/n/9 The abil-ity to search lit-er-a-ture and col-lect and ag-gre-g
+ate met-rics around
+ []
 
-LaTeX Warning: Citation `Witten:2005:DMP:1205860' undefined on input line 32.
 
-(C:\Users\Rob\Dropbox\KDD2013\Parts/Introduction.tex)
-(C:\Users\Rob\Dropbox\KDD2013\Parts/Background.tex
-(C:\Users\Rob\Dropbox\KDD2013\parts/Background-graph.tex)
-(C:\Users\Rob\Dropbox\KDD2013\parts/Background-text.tex [1
+LaTeX Warning: Citation `Witten:2005:DMP:1205860' undefined on input line 34.
+
+(C:\Kdd\Parts/Introduction.tex) (C:\Kdd\Parts/Background.tex
+(C:\Kdd\Parts/Background-graph.tex) (C:\Kdd\Parts/Background-text.tex [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
 <./Images/model.png, id=11, 309.5565pt x 184.89075pt>
@@ -404,53 +455,52 @@ Underfull \hbox (badness 1057) in paragraph at lines 9--9
 -ing plate
  []
 
-[2 <C:/Users/Rob/Dropbox/KDD2013/Images/model.png>])
-(C:\Users\Rob\Dropbox\KDD2013\parts/Background-data.tex))
-Overfull \hbox (6.0389pt too wide) in paragraph at lines 48--38
+[2 <C:/Kdd/Images/model.png>])) (C:\Kdd\Parts/Implementation.tex
+(C:\Kdd\Parts/Implementation-graph.tex
+
+LaTeX Warning: Citation `o2005analysis' on page 3 undefined on input line 3.
+
+
+LaTeX Warning: Citation `rodrigez2010mysql' on page 3 undefined on input line 3
+.
+
+
+LaTeX Warning: Citation `o2005analysis' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Citation `balaban2002co' on page 3 undefined on input line 9.
+
+[3] [4] [5]) (C:\Kdd\Parts/Implementation-text.tex [6]
+
+LaTeX Warning: Reference `tab:before' on page 7 undefined on input line 10.
+
+
+LaTeX Warning: Reference `tab:after' on page 7 undefined on input line 10.
+
+[7]) [8]) (C:\Kdd\Parts/Results.tex) (C:\Kdd\Parts/Conclusion.tex [9])
+(C:\Kdd\Parts/Background-data.tex [10])
+Overfull \hbox (6.0389pt too wide) in paragraph at lines 48--50
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--38
+Underfull \hbox (badness 10000) in paragraph at lines 48--50
 
  []
 
-[3] (C:\Users\Rob\Dropbox\KDD2013\Parts/Implementation.tex
-(C:\Users\Rob\Dropbox\KDD2013\parts/implementation-graph.tex
-
-LaTeX Warning: Citation `o2005analysis' on page 4 undefined on input line 3.
-
-
-LaTeX Warning: Citation `rodrigez2010mysql' on page 4 undefined on input line 3
-.
-
-
-LaTeX Warning: Citation `o2005analysis' on page 4 undefined on input line 9.
-
-
-LaTeX Warning: Citation `balaban2002co' on page 4 undefined on input line 9.
-
-[4] [5] [6]) (C:\Users\Rob\Dropbox\KDD2013\parts/implementation-text.tex
-[7]
-
-LaTeX Warning: Reference `tab:before' on page 8 undefined on input line 10.
-
-
-LaTeX Warning: Reference `tab:after' on page 8 undefined on input line 10.
-
-[8]) [9]) (C:\Users\Rob\Dropbox\KDD2013\Parts/Results.tex)
-(C:\Users\Rob\Dropbox\KDD2013\Parts/Conclusion.tex)
-(C:\Users\Rob\Dropbox\KDD2013\report.bbl [10]) [11]
-(C:\Users\Rob\Dropbox\KDD2013\report.aux)
+(C:\Kdd\report.bbl [11]) [12] (C:\Kdd\report.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 2292 strings out of 493921
- 28623 string characters out of 3144882
- 85618 words of memory out of 3000000
- 5532 multiletter control sequences out of 15000+200000
+ 2392 strings out of 493921
+ 29557 string characters out of 3144882
+ 88588 words of memory out of 3000000
+ 5630 multiletter control sequences out of 15000+200000
  12624 words of font info for 49 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  27i,8n,22p,1651b,258s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -469,9 +519,9 @@ X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX
 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (11 pages, 241657 bytes).
+Output written on report.pdf (12 pages, 245807 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
+ 102 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
