@@ -74,13 +74,13 @@ author couples.
 \[ score_c = \sum_{t \in s} \delta_c(t) \]
 \end{multicols}
 
-\subsubsection{Optimizing with Tf-Idf}
+\subsubsection{Optimizing with TF-IDF}
 
 Thus far, scoring has hinged on how much a term occurs. Common words have a higher score and contribute more towards the final classification. But common words do not say a lot about each sentence\cite{chowdhury2010introduction}. To compensate the higher score for common terms we use a information retreival technique called TF-IDF. Instead of just counting the number of occurrences of a term in a cluster, we assign a TF-IDF for each term and add those together. We simplified TF-IDF for our own use. because a term can only be present once each sentence, we only use IDF. The score for each cluster is now computed as:
 
 
 \begin{multicols}{2}
-\[ \gamma_c(t) =\left\{ \begin{matrix} \mbox{Tf-Idf}(t) & \mbox{if t is present in c} \\ 0 & \mbox{otherwise} \end{matrix} \right.\]
+\[ \gamma_c(t) =\left\{ \begin{matrix} \mbox{TF-IDF}(t) & \mbox{if t is present in c} \\ 0 & \mbox{otherwise} \end{matrix} \right.\]
 
 
 \[ score_c = \sum_{t \in s} \gamma_c(t) \]
