@@ -1,13 +1,13 @@
 
-\section{Co author graph \label{sec:graph-implementation}}
+\section{Co-authorship Social Network Graph \label{sec:graph-implementation}}
 
 \input{Parts/Implementation-graph.tex}
 
-\section{Text analyses \label{sec:text-implementation}}
+\section{Text Analysis \label{sec:text-implementation}}
 
 \input{Parts/Implementation-text.tex}
 
-\section{Smaller features \label{sec:smaller-features-implementation}}
+\section{Smaller Features \label{sec:smaller-features-implementation}}
 
 The data from this also contained smaller, easier to extract, features. The features we also found for \textit{every} paper-author combination.
 
@@ -25,7 +25,7 @@ The data from this also contained smaller, easier to extract, features. The feat
 \end{itemize}
 
 
-\subsection{Classifying the authors and papers \label{sec:classifier-implementation}}
+\section{Classifying the Authors and Papers \label{sec:classifier-implementation}}
 
 For our final submission we used two sets of data with the following columns.
 
@@ -36,15 +36,13 @@ For our final submission we used two sets of data with the following columns.
 \item [] First year 
 \item [] Last year 
 \item [] Average year 
-\item [] Average group size
-\item [] Number of authors in paper
 \item [] Year Standard deviation 
 \item [] Number of papers written
 \item [] Number of journals published in 
 \item [] Number of conferences
 \end{itemize}
 
-We only used the valid set to train our classifier. After we trained the classifier we applied the classifier to the test set. because the classifier also gives a probability we used that to rank the outcome.
+We only used the valid set to train our classifier. After we trained the classifier we applied the classifier to the test set. because the classifier also gives a probability we have used that to rank the outcome.
 
 
 
