@@ -1,0 +1,67 @@
+\subsection*{Text analyses \label{sec:imp-text}}
+
+In section \ref{sec:text-background} we introduced a model to create topics from a large collection of text. We adjusted that approach to the problem we needed to solve. We did not have a lot of text from each of the papers. From each paper we only know the title and keyterms. We did not choose to use the keyterms. The keyterms contained a lot of bias and parsing the keyterms in a usable format proved to be difficult. We instead used the titles of the journal or conference the paper was published in. This method has two advantages:
+
+\begin{itemize}
+\item[1] we have more terms to identify a paper.
+\item[2] More terms are related to each other. If for example the "Automatic detection of acute bacterial pneumonia from chest X-ray reports" was published in a journal congaing the terms "machine learning",  machine learning and X-ray are related. 
+\end{itemize}
+
+We now have an sentence $s$ describing the content of paper $p$. Next, all the diacritics, stopterms (in multiple languages), interpunction and double terms are removed from sentence $s$. This saves a lot of entries in the dictionary\cite{chowdhury2010introduction}. After processing sentence $s$, all terms that co-occur in the same sentence are counted and the result is stored in matrix $M$. A short example with some of the terms in sentence $s$ is worked out in tables \ref{tab:before} and \ref{tab:after}.
+
+\begin{table}
+	\begin{center}
+	
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+	 	& acute  & learning & machine &  x-ray \\ \hline
+acute 	&	0 	& 	1 &	 2 &  0	 \\ \hline
+learning&	1	&	0 &	 3 &  0	 \\ \hline
+machine &	2	&	3 &	 0 &  0	 \\ \hline
+x-ray	&	0	&	0 &	 0 &  0	 \\ \hline
+
+\end{tabular} 
+	\end{center}
+\end{table}
+
+
+\begin{table}
+	\begin{center}
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+	 	& acute  & learning & machine &  x-ray \\ \hline
+acute 	&	0 	& 	2 &	 3 &  1	 \\ \hline
+learning&	2	&	0 &	 4 &  1	 \\ \hline
+machine &	3	&	4 &	 0 &  1	 \\ \hline
+x-ray	&	1	&	1 &	 1 &  0	 \\ \hline
+\end{tabular} 
+
+	\end{center}
+\end{table}
+
+Note that matrix $M$ is symmetric and very sparse. We used this to our advantage and stored this matrix efficiently.
+
+
+\subsubsection*{Clustering}
+
+In the previous subsection we created matrix $M$. Each row is a separate vector $v$ containing information form which terms co-occurs with a another term. Each vector $v$ is then clustered into one of the $c$ clusters with k-means. In our case, we choose  $c = 20$. The number 20 is a wild guess. In the original paper \cite{steyvers2004probabilistic}, the authors use 300 clusters, but our computers were not able to process that number of clusters. Each cluster now contains terms that co-occur a lot. We call a cluster a topic, just as the original paper. As a distance measure we choose \emph{cosine similarity}. Cosine similarity measures the distance between two vectors. The cosine similarity has a big advantage over the Euclidean distance \cite{chowdhury2010introduction}.  
+
+Not that the authors use EM to cluster matrix $M$. This gives the authors a probability of each term for each cluster. because we used k-means we do not have that information anymore. We only which term is in a certain cluster. In our case, each term can only be in a single cluster.
+
+\subsubsection*{Scoring}
+
+At this point we have 20 clusters. Each cluster $c$ contains several terms that that form a single topic. We then score each paper-author combination against the topics. For each  paper-author combination we created sentence $s$ just as in section \ref{sec:imp-text}. For each term in sentence $s$ we counted the number of occurrences in a topic. This is then used as latent variable for classifying paper-author couples.
+\[ \delta_c(t) =\left\{ \begin{matrix} 1 & \mbox{if t is present in c} \\ 0 & \mbox{otherwise} \end{matrix} \right.\]
+
+\[ score_c = \sum_{t \in s} \delta_c(t) \]
+
+\subsubsection*{Optimizing with Tf-Idf}
+
+Thus far, scoring has hinged on how much a term occurs. Common words have a higher score and contribute more towards the final classification. But common words do not say a lot about each sentence\cite{chowdhury2010introduction}. To compensate the higher score for common terms we use a information retreival technique called TF-IDF. Instead of just counting the number of occurrences of a term in a cluster, we assign a TF-IDF for each term and add those together. We simplified TF-IDF for our own use. because a term can only be present once each sentence, we only use IDF. The score for each cluster is now computed as:
+
+\[ \gamma_c(t) =\left\{ \begin{matrix} \mbox{Tf-Idf}(t) & \mbox{if t is present in c} \\ 0 & \mbox{otherwise} \end{matrix} \right.\]
+
+
+\[ score_c = \sum_{t \in s} \gamma_c(t) \]

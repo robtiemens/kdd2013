@@ -1,0 +1,53 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{LBNVdS05}
+
+\bibitem[Cho10]{chowdhury2010introduction}
+G~Chowdhury.
+\newblock {\em Introduction to modern information retrieval}.
+\newblock Facet publishing, 2010.
+
+\bibitem[GS05]{glanzel2005analysing}
+Wolfgang Gl{\"a}nzel and Andr{\'a}s Schubert.
+\newblock Analysing scientific networks through co-authorship.
+\newblock In {\em Handbook of quantitative science and technology research},
+  pages 257--276. Springer, 2005.
+
+\bibitem[LBNVdS05]{liu2005co}
+Xiaoming Liu, Johan Bollen, Michael~L Nelson, and Herbert Van~de Sompel.
+\newblock Co-authorship networks in the digital library research community.
+\newblock {\em Information processing \& management}, 41(6):1462--1480, 2005.
+
+\bibitem[Liu06]{Liu:2006:WDM:1215470}
+Bing Liu.
+\newblock {\em Web Data Mining: Exploring Hyperlinks, Contents, and Usage Data
+  (Data-Centric Systems and Applications)}.
+\newblock Springer-Verlag New York, Inc., Secaucus, NJ, USA, 2006.
+
+\bibitem[MSPG09]{morel2009co}
+Carlos~Medicis Morel, Suzanne~Jacob Serruya, Gerson~Oliveira Penna, and
+  Reinaldo Guimar{\~a}es.
+\newblock Co-authorship network analysis: a powerful tool for strategic
+  planning of research, development and capacity building programs on neglected
+  diseases.
+\newblock {\em PLoS neglected tropical diseases}, 3(8):e501, 2009.
+
+\bibitem[New04]{newman2004coauthorship}
+Mark~EJ Newman.
+\newblock Coauthorship networks and patterns of scientific collaboration.
+\newblock {\em Proceedings of the National academy of Sciences of the United
+  States of America}, 101(Suppl 1):5200--5205, 2004.
+
+\bibitem[NGV{\etalchar{+}}08]{niels2008writer}
+Ralph Niels, Franc Grootjen, Louis Vuurpijl, et~al.
+\newblock Writer identification through information retrieval: the allograph
+  weight vector.
+\newblock In {\em International Conference on Frontiers in Handwriting
+  Recognition}, pages 481--486, 2008.
+
+\bibitem[SSRZG04]{steyvers2004probabilistic}
+Mark Steyvers, Padhraic Smyth, Michal Rosen-Zvi, and Thomas Griffiths.
+\newblock Probabilistic author-topic models for information discovery.
+\newblock In {\em Proceedings of the tenth ACM SIGKDD international conference
+  on Knowledge discovery and data mining}, pages 306--315. ACM, 2004.
+
+\end{thebibliography}
