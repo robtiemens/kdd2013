@@ -12,7 +12,7 @@ Liu et al have specified a way to normalize the weight of a co-authoring relatio
 	f(a_k) &= \#\{ authors \mid \mbox{contributed to paper } k \} \\
 \textbf{Exclusivity}~
 	g_{i,j,k} &= 1 / (f(a_k)-1) \\
-\textbf{Co-authorship frequency}~
+\textbf{Frequency}~
 	c_{i,j} &= \sum_{k=1}^{m} g_{i,j,k} \\
 \textbf{Normalized weight}~
 	w_{i,j} &= \frac{c_{i,j}}{\sum_{k=1}^{n} c_{i,k}}
