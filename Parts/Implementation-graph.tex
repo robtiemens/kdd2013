@@ -20,7 +20,7 @@ When evaluating author pairs in the graph we took into account that the evaluati
 We constructed our graph to be sparse and to have directed edges which we attempted to assign weights to later on.
 For our first set of simple features this was not necessary. 
 
-The features described so far do not take into account the weight of relative coauthorship frequency between authors as described by Liu et al \cite{liu2005co}.
+The features described so far do not take into account the weight of co-authoring relationships between authors as described by Liu et al \cite{liu2005co}.
 We should establish such a measure because an author that produces many papers is more likely to have a collaboration with a randomly selected author than an author who produces only rarely.
 At this point we ran into (time and memory-related) trouble because there exists a very large number of pairwise author combinations for which we want to calculate exclusivity/frequency and the resulting normalized weight.
 The problem stems from the way in which the modeled co-authorships relate to our graph structure.
