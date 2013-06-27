@@ -24,9 +24,9 @@ Our recipe for (sparsely) drawing the edges between author vertices and computin
 \begin{enumerate}
   \item Create a relationship (edge) between each 2-pair of all authors from each paper (if it doesn't already exist).
   \item Exclusivity: Each of these relationships gets a property of exclusivity, which represents the number of authors on this paper (which by inversion gives a relative exclusivity for their co-authoring relationship within this paper).
-  \item Frequency: The sum of these exclusivity values for each relationship over all co-authored papers (which can be aggregated as a single, summing property on the edge for all co-authorships of two connected authors to keep the graph sparse).
-  \item Weight (from A to B): The co-authorship frequency between A and B, averaged over the summed frequency of all of B's co-authorships.
+  \item Frequency (weighted by exclusivity): Another property for this relationship is the sum of these exclusivity values for over all co-authored papers between the two authors (which can be aggregated as a single, summing property on the edge for all co-authorships of two connected authors to keep the graph sparse).
+  \item Weight (from A to B): The coauthorship frequency is then averaged over the corresponding author's coauthorship frequencies to provide a weight property representing how strong their co-authoring relationship is. %The co-authorship frequency between A and B, averaged over the summed frequency of all of B's co-authorships.
 \end{enumerate}
 
 If it requires over 4 steps to connect one author to another by only using this co-authorship path it should be considered a large distance under the assumption that familiar people have at least cooperated once before or have at least one common coauthor resulting in a distance of respectively one and two.
-It is also shown by Erd\"os numbers that the number of steps that have to be taken from one to another is likely to be very limited resulting a quadratically scaled probability \cite{balaban2002co}.
+It is also shown by Erd\H{o}s numbers that the number of steps that have to be taken from one to another is likely to be very limited resulting a quadratically scaled probability \cite{balaban2002co}.
