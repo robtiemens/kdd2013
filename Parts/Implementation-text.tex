@@ -2,13 +2,13 @@
 
 In section \ref{sec:text-background} we introduced a model to create topics from a large collection of text. We adjusted that approach to the problem we needed to solve. We did not have a lot of text from each of the papers. From each paper we only knew its title and keywords.
 We did not choose to use the keywords.
-The keywords contained a lot of bias and parsing them in a usable format proved to be difficult.
+The keywords contained a lot of bias and parsing them into a usable format proved to be difficult.
 We instead used the titles of the journal or conference the paper was published in.
 This method has two advantages:
 
 \begin{itemize}
 \item[1] We have more terms to identify a paper.
-\item[2] More terms are related to each other. If for example the "Automatic detection of acute bacterial pneumonia from chest X-ray reports" was published in a journal containing the terms ``machine learning'', then the terms ``machine learning'' and ``X-ray'' are considered to be related. 
+\item[2] More terms are related to eachother. If for example the "Automatic detection of acute bacterial pneumonia from chest X-ray reports" was published in a journal containing the terms ``machine learning'', then the terms ``machine learning'' and ``X-ray'' are considered to be related. 
 \end{itemize}
 
 We now have a sentence $s$ describing the content of paper $p$.
@@ -23,11 +23,11 @@ A simple example with some of the terms in sentence $s$ is worked out in tables 
 
 \begin{tabular}{|l|l|l|l|l|}
 \hline
-	 	& acute  & learning & machine &  x-ray \\ \hline
-acute 	&	0 	& 	0 &	 0 &  1	 \\ \hline
-learning&	0	&	0 &	 0 &  0	 \\ \hline
-machine &	0	&	0 &	 0 &  0	 \\ \hline
-x-ray	&	1	&	0 &	 0 &  0	 \\ \hline
+	 	& automatic  & detection & pneumonia &  x-ray \\ \hline
+automatic 	&	0 	& 	1 &	 1 &  1	 \\ \hline
+detection	&	1	&	0 &	 1 &  1	 \\ \hline
+pneumonia	&	1	&	1 &	 0 &  1	 \\ \hline
+x-ray		&	1	&	1 &	 1 &  0	 \\ \hline
 
 \end{tabular} 
 	\end{center}
@@ -39,28 +39,30 @@ x-ray	&	1	&	0 &	 0 &  0	 \\ \hline
 \begin{table}
 	\begin{center}
 
-\begin{tabular}{|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|l|}
 \hline
-	 	& acute  & learning & machine &  x-ray \\ \hline
-acute 	&	0 	& 	2 &	 3 &  1	 \\ \hline
-learning&	2	&	0 &	 4 &  1	 \\ \hline
-machine &	3	&	4 &	 0 &  1	 \\ \hline
-x-ray	&	1	&	1 &	 1 &  0	 \\ \hline
+& automatic  & detection & pneumonia &  x-ray & machine & learning \\ \hline
+automatic 	&	0 	& 	1 &	 1 &  1	& 1 & 1 \\ \hline
+detection	&	1	&	0 &	 1 &  1	& 1 & 1 \\ \hline
+pneumonia	&	1	&	1 &	 0 &  1	& 1 & 1 \\ \hline
+x-ray		&	1	&	1 &	 1 &  0	& 1 & 1 \\ \hline
+machine         &	1	&	1 &	 1 &  1 & 0 & 2 \\ \hline
+learning	& 	1	&	1 &	 1 &  0 & 2 & 0 \\ \hline
 \end{tabular} 
 
 	\end{center}
-\caption{The same paper, added to a matrix which already had some word counts for `machine' and `learning', which we decided to link to based on the journal/conference where the paper was contributed.}
+\caption{The same paper, now related to the terms `machine' and `learning' (which we knew to be related beforehand) based on the common journal/conference where the paper was contributed.}
 	\label{tab:after}
 \end{table}
 
-Note that matrix $M$ is symmetric and very sparse. We used this to our advantage and stored this matrix efficiently.
+Note that matrix $M$ is symmetric and very sparse. We used this to our advantage and stored this matrix efficiently. % using what method?
 
 
 \subsubsection*{Clustering}
 
 In the previous subsection we created matrix $M$. Each row is a separate vector $v$ containing information form which terms co-occurs with a another term. Each vector $v$ is then clustered into one of the $c$ clusters with k-means. In our case, we choose  $c = 20$. The number 20 is a wild guess. In the original paper \cite{steyvers2004probabilistic}, the authors use 300 clusters, but our computers were not able to process that number of clusters. Each cluster now contains terms that co-occur a lot. We call a cluster a topic, just as the original paper. As a distance measure we choose \emph{cosine similarity}. Cosine similarity measures the distance between two vectors. The cosine similarity has a big advantage over the Euclidean distance \cite{chowdhury2010introduction}.  
 
-Note that the authors use a Markov chain to train their model. This gives the authors a probability of each term for each topic. Because we used clustering we do not have that information anymore. We only which term is in a certain topic. In our case, each term can only be in a single topic.
+Note that the authors use a Markov chain to train their model. This gives the authors a probability of each term for each topic. Because we used clustering we do not have that information anymore. We only know which term is in a certain topic. In our model, each term can only be in a single topic.
 
 
 \subsubsection{Scoring}
