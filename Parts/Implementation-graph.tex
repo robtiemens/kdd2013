@@ -64,7 +64,9 @@ The aggregate also seemed to not stay cached, but even when we did cache the agg
 We realized this is partly due to the nature of the aggregation itself - no traversed properties are ever re-used after frequencies are computed - but the real problem was more fundamental, namely:
 
 \item[2] The software's multi-threading model is a basic producer/consumer pattern, but there is no built-in option to use more than one producer thread.
-	On fast many-core machines, this leads to consumer threads whose workloads are exhausted sooner than they can be appointed new work by the producer, leading to poor multicore performance.
+On fast many-core machines, this leads to consumer threads whose workloads are exhausted sooner than they can be appointed new work by the producer, leading to poor multicore performance.
+The behaviour seems to fall in a concurrency problem category somewhere between thread starvation and livelock, but neither term accurately describes the phenomenon.
+We propose it could simply be summarized as `underemployment'.
 \end{enumerate}
 
 Because at this point we did start to fear this approach to the problem might be practically infeasible for the given case, we started exploring other graph features that were lighter to compute at the last minute before the competition would close, but then decided we should rather use our basic graph features from the JUNG project instead and begin work on submissions.
